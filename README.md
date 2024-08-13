@@ -36,7 +36,7 @@ If the query parameter is set to `true`, the API will return a JSON response con
 - `skin.slim` contains a boolean value indicating the skin type  
 - `cape` contains the cape in `base64` format  
 
-> **Note:**
+> [!NOTE]
 > If the requested player does not have a cape, the `cape` field will be an empty string.
 
 ---
@@ -52,7 +52,7 @@ The skin for this request will be retrieved from the cache if it is valid. To sp
 `Content-Type: image/png`  
 The query parameter `pixel_width` determines the size of each pixel in the final head image. The default value is `50`.
 
-> **Note:**
+> [!NOTE]
 > The result of this endpoint is not separately cached but generated from the cached skin.
 
 ---
@@ -62,7 +62,7 @@ The query parameter `pixel_width` determines the size of each pixel in the final
 
 The cape, just like the skin, is cached separately for each player, ensuring a faster API response.
 
-> **Note:**
+> [!NOTE]
 > If the player does not have a cape or it is not set, the API will return a `404` error with the body `{ message: 'No cape on this profile' }`.
 
 ---
