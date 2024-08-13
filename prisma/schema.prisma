@@ -1,0 +1,20 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:dataBase.db"
+}
+
+generator db {
+    provider = "prisma-client-js"
+}
+
+model Minecraft {
+    id           Int     @id @default(autoincrement())
+    uuid         String  @unique @default("")
+    data         String  @default("")
+    data_cape    String  @default("")
+    data_head    String  @default("")
+    nickname     String  @default("")
+    expires      BigInt  @default(0)
+    default_nick String  @default("")
+    slim         Boolean @default(false)
+}
