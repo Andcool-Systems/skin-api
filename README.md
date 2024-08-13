@@ -1,4 +1,4 @@
-# A Fragment of the Backend of the PPLBandage Site, Responsible for Receiving, Processing and Storing Minecraft Skins
+# A Fragment of the Backend of the PPLBandage site, Responsible for Receiving, Processing and Storing Minecraft Skins
 
 ## Getting Started
 1. Download the repository from GitHub and extract it to your desired location.
