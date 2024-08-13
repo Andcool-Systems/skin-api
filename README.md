@@ -49,7 +49,7 @@ The skin for this request will be retrieved from the cache if it is valid. To sp
 ---
 ### `GET /head/<nickname/UUID>/svg?pixel_width=50`  
 **Returns the player's head as an image in `svg` format**  
-`Content-Type: image/png`  
+`Content-Type: image/svg+xml`  
 The query parameter `pixel_width` determines the size of each pixel in the final head image. The default value is `50`.
 
 > [!NOTE]
