@@ -3,10 +3,14 @@ import type { Response } from 'express'
 import { MinecraftService } from 'src/minecraft/minecraft.service';
 import { generateSvg } from './svg.module';
 import * as sharp from 'sharp';
+import { SttService } from './stt.service';
 
 @Controller('')
 export class MinecraftController {
-    constructor(private readonly minecraftService: MinecraftService) { }
+    constructor(
+        private readonly minecraftService: MinecraftService,
+        private readonly sttService: SttService
+    ) { }
 
     @Get("/skin/:name")
     async skin(@Param('name') name: string, @Query() query: { cape: boolean }, @Res({ passthrough: true }) res: Response) {
@@ -90,5 +94,19 @@ export class MinecraftController {
         const result = await generateSvg(sharp(Buffer.from(cache.data, "base64")), pixel_width);
         res.set({ 'Content-Type': 'image/svg+xml' });
         return result;
+    }
+
+    @Get('/totem/:name')
+    async totem(@Param('name') name: string, @Res({ passthrough: true }) res: Response) {
+        /* Generate totem */
+
+        const cache = await this.minecraftService.updateSkinCache(name);
+        if (!cache) {
+            throw new HttpException({ message: 'Profile not found' }, HttpStatus.NOT_FOUND);
+        }
+
+        const totem_buff = await this.sttService.makeTotem(Buffer.from(cache.data, 'base64'));
+        res.setHeader('Content-Type', 'image/png');
+        return new StreamableFile(totem_buff);
     }
 }
